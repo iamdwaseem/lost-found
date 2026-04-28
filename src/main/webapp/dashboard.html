@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - Lost & Found Portal</title>
+  <meta name="description" content="View recently lost and found items.">
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+  <nav class="navbar">
+    <a href="dashboard.html" class="nav-brand">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--primary-color)"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+      Find<span>It</span>
+    </a>
+    <div class="nav-links">
+      <a href="dashboard.html" class="active">Dashboard</a>
+      <a href="submit.html">Report Item</a>
+      <a href="login.html">Logout</a>
+    </div>
+  </nav>
+
+  <main class="dashboard-container">
+    <div class="dashboard-header animate-fade-in">
+      <h1>Recent Items</h1>
+      <div class="filter-group">
+        <button class="filter-btn active">All</button>
+        <button class="filter-btn">Lost</button>
+        <button class="filter-btn">Found</button>
+      </div>
+    </div>
+
+    <div class="items-grid">
+      <!-- Item 1 -->
+      <div class="glass-panel item-card delay-1 animate-fade-in" style="opacity: 0;">
+        <img src="https://images.unsplash.com/photo-1583394838336-acd977736f90?w=500&q=80" alt="Lost Headphones" class="item-image">
+        <div class="item-content">
+          <span class="item-badge badge-lost">Lost</span>
+          <h3 class="item-title">Sony WH-1000XM4</h3>
+          <div class="item-date">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+            Oct 24, 2023
+          </div>
+          <div class="item-location">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+            Main Library, 2nd Floor
+          </div>
+          <p class="item-desc">Black over-ear headphones in a black case. Left ear pad has a small scratch.</p>
+          <div class="item-footer">
+            <button class="btn-secondary btn-sm" style="width: 100%;">View Details</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 2 -->
+      <div class="glass-panel item-card delay-2 animate-fade-in" style="opacity: 0;">
+        <img src="https://images.unsplash.com/photo-1590283603385-18ffb2a40c27?w=500&q=80" alt="Found Keys" class="item-image">
+        <div class="item-content">
+          <span class="item-badge badge-found">Found</span>
+          <h3 class="item-title">Car Keys with Keychain</h3>
+          <div class="item-date">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+            Oct 25, 2023
+          </div>
+          <div class="item-location">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+            Cafeteria, Table 4
+          </div>
+          <p class="item-desc">Honda car keys with a blue lanyard and a small bear keychain attached to it.</p>
+          <div class="item-footer">
+            <button class="btn-secondary btn-sm" style="width: 100%;">View Details</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 3 -->
+      <div class="glass-panel item-card delay-3 animate-fade-in" style="opacity: 0;">
+        <img src="https://images.unsplash.com/photo-1563298723-dcfebaa392e3?w=500&q=80" alt="Lost Wallet" class="item-image">
+        <div class="item-content">
+          <span class="item-badge badge-lost">Lost</span>
+          <h3 class="item-title">Brown Leather Wallet</h3>
+          <div class="item-date">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+            Oct 23, 2023
+          </div>
+          <div class="item-location">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+            Science Building, Room 101
+          </div>
+          <p class="item-desc">Contains ID card, driving license and some cash. Very important for my upcoming exams.</p>
+          <div class="item-footer">
+            <button class="btn-secondary btn-sm" style="width: 100%;">View Details</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Result - Lost & Found Portal</title>
+  <link rel="stylesheet" href="css/global.css">
+  <style>
+    .result-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: calc(100vh - 80px);
+      padding: 2rem;
+    }
+    
+    .result-card {
+      text-align: center;
+      padding: 4rem 3rem;
+      max-width: 500px;
+    }
+
+    .success-icon {
+      width: 80px;
+      height: 80px;
+      background: rgba(34, 197, 94, 0.2);
+      color: var(--success-color);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 2rem;
+      box-shadow: 0 0 20px rgba(34, 197, 94, 0.3);
+    }
+
+    .result-title {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .result-message {
+      color: var(--text-muted);
+      margin-bottom: 2.5rem;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <a href="dashboard.jsp" class="nav-brand">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--primary-color)"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+      Find<span>It</span>
+    </a>
+    <div class="nav-links">
+      <a href="dashboard.jsp">Dashboard</a>
+      <a href="login.html">Logout</a>
+    </div>
+  </nav>
+
+  <main class="result-container">
+    <div class="glass-panel result-card animate-fade-in">
+      <div class="success-icon delay-1 animate-fade-in" style="opacity: 0;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+      </div>
+      
+      <h1 class="result-title delay-2 animate-fade-in" style="opacity: 0;">Success!</h1>
+      
+      <p class="result-message delay-3 animate-fade-in" style="opacity: 0;">
+        <% 
+            String msg = (String) request.getAttribute("successMessage");
+            if (msg != null) {
+                out.print(msg);
+            } else {
+                out.print("Action completed successfully.");
+            }
+        %>
+      </p>
+
+      <a href="dashboard.jsp" class="btn-primary delay-3 animate-fade-in" style="opacity: 0;">Return to Dashboard</a>
+    </div>
+  </main>
+</body>
+</html>
