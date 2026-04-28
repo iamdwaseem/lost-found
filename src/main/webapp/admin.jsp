@@ -48,6 +48,7 @@
     </a>
     <div class="nav-links">
       <a href="dashboard.jsp">Public Dashboard</a>
+      <a href="my-claims.jsp">My Claims</a>
       <a href="admin.jsp" class="active">Admin</a>
       <span style="color: var(--text-muted); font-size: 0.85rem;">Hi, <%= userName %></span>
       <a href="LogoutServlet">Logout</a>

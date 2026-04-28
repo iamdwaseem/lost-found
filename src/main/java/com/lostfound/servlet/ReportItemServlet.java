@@ -105,7 +105,7 @@ public class ReportItemServlet extends HttpServlet {
         } catch (Exception e) {
             e.printStackTrace();
             request.setAttribute("errorMessage", "An error occurred while saving your report: " + e.getMessage());
-            RequestDispatcher dispatcher = request.getRequestDispatcher("submit.html");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("submit.jsp");
             dispatcher.forward(request, response);
         }
     }

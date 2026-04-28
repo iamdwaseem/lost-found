@@ -61,6 +61,7 @@
     </a>
     <div class="nav-links">
       <a href="dashboard.jsp">Dashboard</a>
+      <a href="my-claims.jsp">My Claims</a>
       <% if ("admin".equals(userRole)) { %><a href="admin.jsp">Admin Panel</a><% } %>
       <span style="color: var(--text-muted); font-size: 0.85rem;">Hi, <%= userName %></span>
       <a href="LogoutServlet">Logout</a>
@@ -70,7 +71,7 @@
   <main class="thread-container">
     <!-- Header -->
     <div class="thread-header animate-fade-in">
-      <a href="<%= "admin".equals(userRole) ? "admin.jsp" : "dashboard.jsp" %>" style="color: var(--text-muted); text-decoration: none; font-size: 0.9rem;">&larr; Back</a>
+      <a href="<%= "admin".equals(userRole) ? "admin.jsp" : "my-claims.jsp" %>" style="color: var(--text-muted); text-decoration: none; font-size: 0.9rem;">&larr; Back</a>
       <h1 style="margin-top: 0.75rem;">Claim for: <%= itemName %></h1>
       <div class="thread-meta">
         <span class="status-badge <%= statusClass %>"><%= claim.getStatus() %></span>

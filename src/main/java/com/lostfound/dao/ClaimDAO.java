@@ -96,6 +96,23 @@ public class ClaimDAO {
             if (transaction != null) transaction.rollback();
             e.printStackTrace();
         }
+    }
+
+    /**
+     * Get all claims filed by a specific user email.
+     */
+    public List<Claim> getClaimsByEmail(String email) {
+        try (Session session = factory.openSession()) {
+            return session.createQuery(
+                "from Claim where claimantEmail = :email order by id desc", Claim.class)
+                .setParameter("email", email)
+                .list();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
     /**
      * Check if a user (by email) has already claimed a specific item.
      * Returns true if any claim exists (pending, approved, or rejected).

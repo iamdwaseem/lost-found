@@ -26,7 +26,8 @@
     </a>
     <div class="nav-links">
       <a href="dashboard.jsp" class="active">Dashboard</a>
-      <a href="submit.html">Report Item</a>
+      <a href="submit.jsp">Report Item</a>
+      <a href="my-claims.jsp">My Claims</a>
       <% if ("admin".equals(userRole)) { %>
         <a href="admin.jsp">Admin Panel</a>
       <% } %>
