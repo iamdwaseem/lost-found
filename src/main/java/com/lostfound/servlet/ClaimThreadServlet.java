@@ -85,7 +85,15 @@ public class ClaimThreadServlet extends HttpServlet {
                 File uploadDir = new File(uploadFilePath);
                 if (!uploadDir.exists()) uploadDir.mkdirs();
 
-                String fileName = "msg_" + System.currentTimeMillis() + "_" + filePart.getSubmittedFileName().replaceAll("\\s+", "_");
+                String submittedFileName = null;
+                for (String cd : filePart.getHeader("content-disposition").split(";")) {
+                    if (cd.trim().startsWith("filename")) {
+                        submittedFileName = cd.substring(cd.indexOf('=') + 1).trim().replace("\"", "");
+                    }
+                }
+                if (submittedFileName == null || submittedFileName.isEmpty()) submittedFileName = "image";
+                
+                String fileName = "msg_" + System.currentTimeMillis() + "_" + submittedFileName.replaceAll("\\s+", "_");
                 filePart.write(uploadFilePath + File.separator + fileName);
                 imagePath = UPLOAD_DIR + "/" + fileName;
             }
