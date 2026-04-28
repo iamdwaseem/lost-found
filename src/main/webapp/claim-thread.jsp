@@ -130,12 +130,12 @@
     <!-- Admin Actions -->
     <% if ("admin".equals(userRole) && "pending".equals(claim.getStatus())) { %>
     <div style="display: flex; gap: 1rem; margin-top: 1.5rem;" class="animate-fade-in">
-      <form action="AdminServlet" method="POST" style="flex: 1;">
+      <form action="AdminServlet" method="POST" style="flex: 1;" onsubmit="return confirm('Are you sure you want to APPROVE this claim?');">
         <input type="hidden" name="action" value="approveClaim">
         <input type="hidden" name="id" value="<%= claim.getId() %>">
         <button type="submit" class="btn-primary" style="background: linear-gradient(135deg, #10b981, #059669); width: 100%;">✓ Approve Claim</button>
       </form>
-      <form action="AdminServlet" method="POST" style="flex: 1;">
+      <form action="AdminServlet" method="POST" style="flex: 1;" onsubmit="return confirm('Are you sure you want to REJECT this claim?');">
         <input type="hidden" name="action" value="rejectClaim">
         <input type="hidden" name="id" value="<%= claim.getId() %>">
         <button type="submit" class="btn-primary" style="background: linear-gradient(135deg, #ef4444, #dc2626); width: 100%;">✕ Reject Claim</button>

@@ -116,12 +116,12 @@
             <td><%= claim.getCreatedAt() %></td>
             <td style="white-space: nowrap;">
               <a href="ClaimThread?id=<%= claim.getId() %>" class="action-btn btn-resolve" style="text-decoration: none;">View Thread</a>
-              <form action="AdminServlet" method="POST" style="display: inline;">
+              <form action="AdminServlet" method="POST" style="display: inline;" onsubmit="return confirm('Are you sure you want to APPROVE this claim?');">
                 <input type="hidden" name="action" value="approveClaim">
                 <input type="hidden" name="id" value="<%= claim.getId() %>">
                 <button type="submit" class="action-btn btn-approve">Approve</button>
               </form>
-              <form action="AdminServlet" method="POST" style="display: inline;">
+              <form action="AdminServlet" method="POST" style="display: inline;" onsubmit="return confirm('Are you sure you want to REJECT this claim?');">
                 <input type="hidden" name="action" value="rejectClaim">
                 <input type="hidden" name="id" value="<%= claim.getId() %>">
                 <button type="submit" class="action-btn btn-reject">Reject</button>
@@ -167,7 +167,7 @@
             <td><span class="status-badge <%= statusClass %>"><%= item.getStatus() %></span></td>
             <td>
               <% if (!"resolved".equals(item.getStatus())) { %>
-              <form action="AdminServlet" method="POST" style="display: inline;">
+              <form action="AdminServlet" method="POST" style="display: inline;" onsubmit="return confirm('Are you sure you want to mark this item as RESOLVED?');">
                 <input type="hidden" name="action" value="resolveItem">
                 <input type="hidden" name="id" value="<%= item.getId() %>">
                 <button type="submit" class="action-btn btn-resolve">Resolve</button>
