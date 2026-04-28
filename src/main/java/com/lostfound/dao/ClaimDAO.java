@@ -114,20 +114,18 @@ public class ClaimDAO {
     }
 
     /**
-     * Check if a user (by email) has already claimed a specific item.
-     * Returns true if any claim exists (pending, approved, or rejected).
+     * Get a user's previous claim for a specific item, if any.
      */
-    public boolean hasUserClaimedItem(int itemId, String email) {
+    public Claim getPreviousClaim(int itemId, String email) {
         try (Session session = factory.openSession()) {
-            Long count = session.createQuery(
-                "select count(*) from Claim where itemId = :itemId and claimantEmail = :email", Long.class)
+            return session.createQuery(
+                "from Claim where itemId = :itemId and claimantEmail = :email", Claim.class)
                 .setParameter("itemId", itemId)
                 .setParameter("email", email)
                 .uniqueResult();
-            return count != null && count > 0;
         } catch (Exception e) {
             e.printStackTrace();
-            return false;
+            return null;
         }
     }
 }

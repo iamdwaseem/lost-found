@@ -41,9 +41,20 @@ public class ClaimServlet extends HttpServlet {
 
             // Prevent duplicate claims — one claim per user per item
             ClaimDAO claimDAO = new ClaimDAO();
-            if (claimDAO.hasUserClaimedItem(itemId, claimantEmail)) {
-                request.setAttribute("successMessage",
-                    "You have already submitted a claim for this item. Please wait for the admin to review it.");
+            com.lostfound.model.Claim existingClaim = claimDAO.getPreviousClaim(itemId, claimantEmail);
+            if (existingClaim != null) {
+                String message;
+                if ("pending".equals(existingClaim.getStatus())) {
+                    message = "You have already submitted a claim for this item. Please wait for the admin to review it.";
+                } else if ("rejected".equals(existingClaim.getStatus())) {
+                    message = "Your previous claim for this item was rejected. You cannot file another claim for this item.";
+                } else if ("approved".equals(existingClaim.getStatus())) {
+                    message = "Your claim for this item has already been approved!";
+                } else {
+                    message = "You have already filed a claim for this item.";
+                }
+                
+                request.setAttribute("successMessage", message);
                 RequestDispatcher dispatcher = request.getRequestDispatcher("result.jsp");
                 dispatcher.forward(request, response);
                 return;
