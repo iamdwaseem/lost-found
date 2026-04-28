@@ -27,12 +27,18 @@ public class ClaimMessage {
     @Column(name = "message", columnDefinition = "TEXT", nullable = false)
     private String message;
 
+    @Column(name = "image_path")
+    private String imagePath;
+
     @Column(name = "created_at")
     private String createdAt;
 
     public ClaimMessage() {}
 
     // Getters and Setters
+    public String getImagePath() { return imagePath; }
+    public void setImagePath(String imagePath) { this.imagePath = imagePath; }
+
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
 

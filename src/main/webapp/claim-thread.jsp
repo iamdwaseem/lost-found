@@ -106,6 +106,11 @@
           <span class="role-tag <%= isAdmin ? "tag-admin" : "tag-user" %>"><%= msg.getSenderRole() %></span>
         </div>
         <div class="msg-text"><%= msg.getMessage() %></div>
+        <% if (msg.getImagePath() != null && !msg.getImagePath().isEmpty()) { %>
+          <div style="margin-top: 0.75rem;">
+            <img src="<%= request.getContextPath() %>/<%= msg.getImagePath() %>" alt="Message image" style="max-width: 100%; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
+          </div>
+        <% } %>
         <div class="msg-time"><%= msg.getCreatedAt() %></div>
       </div>
       <% } } %>
@@ -115,9 +120,15 @@
     <% if (!isResolved) { %>
     <div class="glass-panel reply-box animate-fade-in">
       <h3 style="font-size: 1rem; margin-bottom: 1rem;">Reply</h3>
-      <form action="ClaimThread" method="POST">
+      <form action="ClaimThread" method="POST" enctype="multipart/form-data">
         <input type="hidden" name="claimId" value="<%= claim.getId() %>">
-        <textarea name="message" class="form-control" placeholder="Type your message..." required></textarea>
+        <textarea name="message" class="form-control" placeholder="Type your message..."></textarea>
+        
+        <div style="margin-top: 1rem;">
+          <label style="font-size: 0.85rem; color: var(--text-muted); display: block; margin-bottom: 0.5rem;">Attach Image (Optional)</label>
+          <input type="file" name="imageFile" accept="image/*" class="form-control" style="padding: 0.5rem;">
+        </div>
+
         <button type="submit" class="btn-primary" style="width: auto; padding: 0.65rem 1.5rem;">Send Message</button>
       </form>
     </div>
