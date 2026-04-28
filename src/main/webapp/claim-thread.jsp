@@ -61,8 +61,11 @@
     </a>
     <div class="nav-links">
       <a href="dashboard.jsp">Dashboard</a>
-      <a href="my-claims.jsp">My Claims</a>
-      <% if ("admin".equals(userRole)) { %><a href="admin.jsp">Admin Panel</a><% } %>
+      <% if (!"admin".equals(userRole)) { %>
+        <a href="my-claims.jsp">My Claims</a>
+      <% } else { %>
+        <a href="admin.jsp">Admin Panel</a>
+      <% } %>
       <span style="color: var(--text-muted); font-size: 0.85rem;">Hi, <%= userName %></span>
       <a href="LogoutServlet">Logout</a>
     </div>
