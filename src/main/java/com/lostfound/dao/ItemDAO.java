@@ -21,6 +21,7 @@ public class ItemDAO {
                 .addAnnotatedClass(Item.class)
                 .addAnnotatedClass(Claim.class)
                 .addAnnotatedClass(User.class)
+                .addAnnotatedClass(com.lostfound.model.ClaimMessage.class)
                 .buildSessionFactory();
 
             // Seed admin account on first startup

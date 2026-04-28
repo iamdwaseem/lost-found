@@ -48,10 +48,15 @@
         <url-pattern>/ItemDetail</url-pattern>
     </servlet-mapping>
 
-    <!-- ClaimServlet -->
+    <!-- ClaimServlet (multipart for proof image) -->
     <servlet>
         <servlet-name>ClaimServlet</servlet-name>
         <servlet-class>com.lostfound.servlet.ClaimServlet</servlet-class>
+        <multipart-config>
+            <file-size-threshold>2097152</file-size-threshold>
+            <max-file-size>10485760</max-file-size>
+            <max-request-size>52428800</max-request-size>
+        </multipart-config>
     </servlet>
     <servlet-mapping>
         <servlet-name>ClaimServlet</servlet-name>
@@ -85,6 +90,15 @@
     <servlet-mapping>
         <servlet-name>LogoutServlet</servlet-name>
         <url-pattern>/LogoutServlet</url-pattern>
+    </servlet-mapping>
+    <!-- ClaimThreadServlet -->
+    <servlet>
+        <servlet-name>ClaimThreadServlet</servlet-name>
+        <servlet-class>com.lostfound.servlet.ClaimThreadServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ClaimThreadServlet</servlet-name>
+        <url-pattern>/ClaimThread</url-pattern>
     </servlet-mapping>
 
 </web-app>

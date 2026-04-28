@@ -49,7 +49,8 @@
     <div class="nav-links">
       <a href="dashboard.jsp">Public Dashboard</a>
       <a href="admin.jsp" class="active">Admin</a>
-      <a href="admin-login.html">Logout</a>
+      <span style="color: var(--text-muted); font-size: 0.85rem;">Hi, <%= userName %></span>
+      <a href="LogoutServlet">Logout</a>
     </div>
   </nav>
 
@@ -106,9 +107,15 @@
             <td><%= claimItemName %></td>
             <td><%= claim.getClaimantName() %></td>
             <td><%= claim.getClaimantEmail() %></td>
-            <td style="max-width: 200px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;" title="<%= claim.getProof() %>"><%= claim.getProof() %></td>
+            <td style="max-width: 200px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;" title="<%= claim.getProof() %>">
+              <%= claim.getProof() %>
+              <% if (claim.getProofImagePath() != null && !claim.getProofImagePath().isEmpty()) { %>
+                <br><span style="color: var(--success-color); font-size: 0.75rem;">📎 Image attached</span>
+              <% } %>
+            </td>
             <td><%= claim.getCreatedAt() %></td>
-            <td>
+            <td style="white-space: nowrap;">
+              <a href="ClaimThread?id=<%= claim.getId() %>" class="action-btn btn-resolve" style="text-decoration: none;">View Thread</a>
               <form action="AdminServlet" method="POST" style="display: inline;">
                 <input type="hidden" name="action" value="approveClaim">
                 <input type="hidden" name="id" value="<%= claim.getId() %>">

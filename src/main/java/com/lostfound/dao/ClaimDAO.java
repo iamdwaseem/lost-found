@@ -96,5 +96,21 @@ public class ClaimDAO {
             if (transaction != null) transaction.rollback();
             e.printStackTrace();
         }
+    /**
+     * Check if a user (by email) has already claimed a specific item.
+     * Returns true if any claim exists (pending, approved, or rejected).
+     */
+    public boolean hasUserClaimedItem(int itemId, String email) {
+        try (Session session = factory.openSession()) {
+            Long count = session.createQuery(
+                "select count(*) from Claim where itemId = :itemId and claimantEmail = :email", Long.class)
+                .setParameter("itemId", itemId)
+                .setParameter("email", email)
+                .uniqueResult();
+            return count != null && count > 0;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 }

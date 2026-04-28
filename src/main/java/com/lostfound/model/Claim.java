@@ -27,13 +27,18 @@ public class Claim {
     @Column(name = "proof", columnDefinition = "TEXT", nullable = false)
     private String proof;
 
+    @Column(name = "proof_image_path")
+    private String proofImagePath;
+
     @Column(name = "status")
     private String status = "pending";
 
     @Column(name = "created_at")
     private String createdAt;
 
-    // Constructors
+    @Column(name = "claimant_user_id")
+    private Integer claimantUserId;
+
     public Claim() {}
 
     // Getters and Setters
@@ -52,9 +57,15 @@ public class Claim {
     public String getProof() { return proof; }
     public void setProof(String proof) { this.proof = proof; }
 
+    public String getProofImagePath() { return proofImagePath; }
+    public void setProofImagePath(String proofImagePath) { this.proofImagePath = proofImagePath; }
+
     public String getStatus() { return status; }
     public void setStatus(String status) { this.status = status; }
 
     public String getCreatedAt() { return createdAt; }
     public void setCreatedAt(String createdAt) { this.createdAt = createdAt; }
+
+    public Integer getClaimantUserId() { return claimantUserId; }
+    public void setClaimantUserId(Integer claimantUserId) { this.claimantUserId = claimantUserId; }
 }

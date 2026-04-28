@@ -16,17 +16,17 @@
     </a>
     <div class="nav-links">
       <a href="dashboard.jsp">Dashboard</a>
-      <a href="login.html">Logout</a>
+      <a href="LogoutServlet">Logout</a>
     </div>
   </nav>
 
   <main class="form-page-container">
-    <div class="glass-panel submission-card animate-fade-in" style="max-width: 500px;">
+    <div class="glass-panel submission-card animate-fade-in" style="max-width: 550px;">
       <h1 style="margin-bottom: 0.5rem; font-size: 1.8rem;">Claim an Item</h1>
       <p id="claimItemName" style="color: var(--primary-color); font-weight: 500; margin-bottom: 0.5rem;"></p>
-      <p style="color: var(--text-muted); margin-bottom: 2rem; font-size: 0.9rem;">Provide proof of ownership so an admin can verify your claim.</p>
+      <p style="color: var(--text-muted); margin-bottom: 2rem; font-size: 0.9rem;">Provide proof of ownership. An admin will review your claim and may ask follow-up questions.</p>
 
-      <form id="claimForm" action="ClaimServlet" method="POST">
+      <form id="claimForm" action="ClaimServlet" method="POST" enctype="multipart/form-data">
         <input type="hidden" id="itemId" name="itemId" value="">
 
         <div class="form-group">
@@ -40,8 +40,20 @@
         </div>
 
         <div class="form-group">
-          <label for="proof">Proof of Ownership</label>
-          <textarea id="proof" name="proof" class="form-control" rows="5" placeholder="Describe distinguishing features, serial numbers, purchase receipts, or any other proof that this item belongs to you..." required></textarea>
+          <label for="proof">Describe Your Proof of Ownership</label>
+          <textarea id="proof" name="proof" class="form-control" rows="4" placeholder="Describe distinguishing features, serial numbers, purchase receipts, or any other proof..." required></textarea>
+        </div>
+
+        <div class="form-group">
+          <label>Upload Proof Image (optional)</label>
+          <div class="file-upload-wrapper">
+            <div class="upload-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+            </div>
+            <p class="upload-text">Upload receipt, photo, or evidence</p>
+            <input type="file" id="proofImage" name="proofImage" accept="image/png, image/jpeg, image/jpg, image/gif">
+          </div>
+          <div id="proofFileName" style="margin-top: 0.5rem; font-size: 0.85rem; color: var(--success-color);"></div>
         </div>
 
         <button type="submit" class="btn-primary">Submit Claim</button>
@@ -50,38 +62,34 @@
   </main>
 
   <script>
-    // Extract query params to pre-fill hidden item ID and display item name
     const params = new URLSearchParams(window.location.search);
     const itemId = params.get('id');
     const itemName = params.get('name');
+    if (itemId) document.getElementById('itemId').value = itemId;
+    if (itemName) document.getElementById('claimItemName').textContent = 'Item: ' + decodeURIComponent(itemName);
 
-    if (itemId) {
-      document.getElementById('itemId').value = itemId;
-    }
-    if (itemName) {
-      document.getElementById('claimItemName').textContent = 'Item: ' + decodeURIComponent(itemName);
-    }
+    // Show selected file name
+    document.getElementById('proofImage').addEventListener('change', function() {
+      const display = document.getElementById('proofFileName');
+      display.textContent = this.files.length > 0 ? 'Selected: ' + this.files[0].name : '';
+    });
 
-    // Client-side validation
+    // Validation
     document.getElementById('claimForm').addEventListener('submit', function(e) {
       const name = document.getElementById('claimantName').value.trim();
       const email = document.getElementById('claimantEmail').value.trim();
       const proof = document.getElementById('proof').value.trim();
+      if (!name || !email || !proof) { e.preventDefault(); alert('Please fill in all required fields.'); return; }
+      if (!/^\S+@\S+\.\S+$/.test(email)) { e.preventDefault(); alert('Please enter a valid email.'); return; }
+      if (proof.length < 20) { e.preventDefault(); alert('Please provide more detailed proof (at least 20 characters).'); return; }
 
-      if (!name || !email || !proof) {
-        e.preventDefault();
-        alert('Please fill in all fields.');
-        return;
-      }
-      if (!/^\S+@\S+\.\S+$/.test(email)) {
-        e.preventDefault();
-        alert('Please enter a valid email address.');
-        return;
-      }
-      if (proof.length < 20) {
-        e.preventDefault();
-        alert('Please provide more detailed proof of ownership (at least 20 characters).');
-        return;
+      // Validate image type if provided
+      const fileInput = document.getElementById('proofImage');
+      if (fileInput.files.length > 0) {
+        const validTypes = ['image/jpeg', 'image/png', 'image/jpg', 'image/gif'];
+        if (!validTypes.includes(fileInput.files[0].type)) {
+          e.preventDefault(); alert('Only image files (JPEG, PNG, GIF) are allowed.'); return;
+        }
       }
     });
   </script>

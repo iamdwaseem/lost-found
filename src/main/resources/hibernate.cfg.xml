@@ -27,5 +27,6 @@
         <mapping class="com.lostfound.model.Item"/>
         <mapping class="com.lostfound.model.Claim"/>
         <mapping class="com.lostfound.model.User"/>
+        <mapping class="com.lostfound.model.ClaimMessage"/>
     </session-factory>
 </hibernate-configuration>
